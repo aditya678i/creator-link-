@@ -10,11 +10,19 @@ export const SmartAssistant: React.FC = () => {
 
   const brainstormCampaign = async () => {
     if (!brandInfo.trim()) return;
+    
+    // Check for API key before attempting connection
+    const apiKey = process.env.API_KEY;
+    if (!apiKey) {
+      setSuggestion("API Key not found. Please set your API_KEY environment variable in your hosting provider settings (Vercel/Netlify).");
+      return;
+    }
+
     setLoading(true);
     setSuggestion(null);
 
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const ai = new GoogleGenAI({ apiKey });
       const response = await ai.models.generateContent({
         model: 'gemini-3-pro-preview',
         contents: `Act as a senior influencer marketing strategist at CreatorLink. 
@@ -30,7 +38,7 @@ export const SmartAssistant: React.FC = () => {
       setSuggestion(response.text || 'No suggestion generated.');
     } catch (error) {
       console.error("AI Assistant Error:", error);
-      setSuggestion("Unable to generate strategy at this moment. Please contact our team directly!");
+      setSuggestion("Unable to generate strategy at this moment. Please check your API key configuration.");
     } finally {
       setLoading(false);
     }

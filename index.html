@@ -9,6 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      // Defensive shim for production environments where process.env might be accessed
+      window.process = window.process || { env: {} };
+    </script>
     <style>
       body {
         font-family: 'Inter', sans-serif;
@@ -75,5 +79,7 @@
 </head>
   <body class="bg-white text-slate-900">
     <div id="root"></div>
+    <!-- Entry point for the application -->
+    <script type="module" src="./index.tsx"></script>
   </body>
 </html>
