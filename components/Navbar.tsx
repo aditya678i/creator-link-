@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Rocket } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface NavbarProps {
   activeTab: 'home' | 'contact';
@@ -37,11 +38,11 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, onNavigate }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div 
-            className="flex items-center gap-2 cursor-pointer group"
+            className="flex items-center gap-3 cursor-pointer group"
             onClick={() => onNavigate('home')}
           >
-            <div className="bg-blue-600 p-2 rounded-xl group-hover:bg-emerald-500 group-hover:rotate-12 transition-all duration-300">
-              <Rocket className="w-6 h-6 text-white" />
+            <div className="transition-transform duration-500 group-hover:scale-110">
+              <Logo className="w-10 h-10" />
             </div>
             <span className="text-xl font-extrabold tracking-tight text-slate-900">
               Creator<span className="gradient-text">Link</span>

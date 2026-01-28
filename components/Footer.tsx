@@ -1,7 +1,7 @@
 
 import React from 'react';
-// Added missing Send icon import.
-import { Rocket, Twitter, Instagram, Linkedin, ArrowUp, Send } from 'lucide-react';
+import { Twitter, Instagram, Linkedin, ArrowUp, Send } from 'lucide-react';
+import { Logo } from './Logo';
 
 interface FooterProps {
   onNavigate: (tab: 'home' | 'contact') => void;
@@ -16,8 +16,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center gap-2 mb-6 cursor-pointer group" onClick={() => onNavigate('home')}>
-              <div className="bg-blue-600 p-2 rounded-lg group-hover:rotate-12 transition-transform duration-300">
-                <Rocket className="w-5 h-5 text-white" />
+              <div className="transition-transform duration-300 group-hover:scale-110">
+                <Logo className="w-8 h-8" />
               </div>
               <span className="text-xl font-extrabold text-slate-900">
                 Creator<span className="gradient-text">Link</span>

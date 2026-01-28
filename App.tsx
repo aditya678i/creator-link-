@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Services } from './components/Services';
@@ -13,28 +13,44 @@ import { SmartAssistant } from './components/SmartAssistant';
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'home' | 'contact'>('home');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // High-performance smooth switch logic
+  const handleNavigate = (tab: 'home' | 'contact') => {
+    if (tab === activeTab) return;
+    setIsTransitioning(true);
+    
+    // Smooth scroll and delay state change for visual continuity
+    setTimeout(() => {
+      setActiveTab(tab);
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      setIsTransitioning(false);
+    }, 350);
+  };
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar onNavigate={setActiveTab} activeTab={activeTab} />
+    <div className="min-h-screen flex flex-col bg-white">
+      <Navbar onNavigate={handleNavigate} activeTab={activeTab} />
       
-      <main className="flex-grow">
+      <main className={`flex-grow transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] ${isTransitioning ? 'opacity-0 scale-[0.97] blur-sm' : 'opacity-100 scale-100 blur-0'}`}>
         {activeTab === 'home' ? (
-          <>
-            <Hero onGetStarted={() => setActiveTab('contact')} />
+          <div key="home-page" className="animate-fade-in">
+            <Hero onGetStarted={() => handleNavigate('contact')} />
             <Partners />
             <Services />
             <SmartAssistant />
             <HowItWorks />
             <WhyUs />
-            <CTASection onGetStarted={() => setActiveTab('contact')} />
-          </>
+            <CTASection onGetStarted={() => handleNavigate('contact')} />
+          </div>
         ) : (
-          <ContactForm />
+          <div key="contact-page" className="animate-scale-in">
+            <ContactForm />
+          </div>
         )}
       </main>
 
-      <Footer onNavigate={setActiveTab} />
+      <Footer onNavigate={handleNavigate} />
     </div>
   );
 };
