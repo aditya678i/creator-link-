@@ -7,29 +7,29 @@ export const Services: React.FC = () => {
     {
       title: 'Influencer Marketing',
       description: 'We connect brands with relevant creators for authentic promotions across Instagram, YouTube, and TikTok.',
-      icon: <Users className="w-8 h-8 text-blue-600" />,
-      color: 'blue'
+      icon: <Users className="w-8 h-8 text-indigo-400" />,
+      color: 'indigo'
     },
     {
       title: 'Creator Management',
       description: 'We help high-potential creators secure premium brand deals and manage long-term strategic partnerships.',
-      icon: <Layout className="w-8 h-8 text-emerald-600" />,
-      color: 'emerald'
+      icon: <Layout className="w-8 h-8 text-purple-400" />,
+      color: 'purple'
     },
     {
       title: 'Campaign Strategy',
       description: 'Full-service planning, execution, and deep analytics reporting to ensure every campaign hits your KPIs.',
-      icon: <BarChart3 className="w-8 h-8 text-blue-600" />,
-      color: 'blue'
+      icon: <BarChart3 className="w-8 h-8 text-indigo-400" />,
+      color: 'indigo'
     }
   ];
 
   return (
-    <section id="services" className="py-24 bg-slate-50/50">
+    <section id="services" className="py-24 bg-[#0a0814]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-blue-600 font-extrabold tracking-[0.2em] uppercase text-xs mb-4">What We Do</h2>
-          <h3 className="text-4xl lg:text-5xl font-black text-slate-900 leading-tight">
+          <h2 className="text-indigo-400 font-extrabold tracking-[0.2em] uppercase text-xs mb-4">What We Do</h2>
+          <h3 className="text-4xl lg:text-5xl font-black text-white leading-tight">
             Comprehensive Solutions for <br />
             the <span className="gradient-text">Creator Economy</span>
           </h3>
@@ -39,22 +39,22 @@ export const Services: React.FC = () => {
           {services.map((service, idx) => (
             <div 
               key={idx} 
-              className="group relative bg-white p-10 rounded-[32px] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_50px_rgba(37,99,235,0.1)] transition-all duration-500 border border-slate-100 hover:border-blue-100 hover:-translate-y-3"
+              className="group relative bg-[#16132b] p-10 rounded-[32px] shadow-2xl hover:shadow-[0_20px_50px_rgba(99,102,241,0.1)] transition-all duration-500 border border-white/5 hover:border-indigo-500/30 hover:-translate-y-3"
             >
-              <div className={`w-20 h-20 rounded-[24px] flex items-center justify-center mb-10 transition-all duration-500 ${service.color === 'blue' ? 'bg-blue-50 group-hover:bg-blue-600' : 'bg-emerald-50 group-hover:bg-emerald-500'}`}>
+              <div className={`w-20 h-20 rounded-[24px] flex items-center justify-center mb-10 transition-all duration-500 ${service.color === 'indigo' ? 'bg-indigo-500/10 group-hover:bg-indigo-600' : 'bg-purple-500/10 group-hover:bg-purple-600'}`}>
                 <div className="transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:text-white">
-                  {React.cloneElement(service.icon as React.ReactElement, { 
-                    className: `w-8 h-8 transition-colors ${service.color === 'blue' ? 'text-blue-600' : 'text-emerald-600'} group-hover:text-white` 
+                  {React.cloneElement(service.icon as React.ReactElement<{ className?: string }>, { 
+                    className: `w-8 h-8 transition-colors ${service.color === 'indigo' ? 'text-indigo-400' : 'text-purple-400'} group-hover:text-white` 
                   })}
                 </div>
               </div>
-              <h4 className="text-2xl font-black text-slate-900 mb-5 group-hover:text-blue-600 transition-colors">
+              <h4 className="text-2xl font-black text-white mb-5 group-hover:text-indigo-400 transition-colors">
                 {service.title}
               </h4>
-              <p className="text-slate-500 leading-relaxed font-medium">
+              <p className="text-slate-400 leading-relaxed font-medium">
                 {service.description}
               </p>
-              <div className="mt-8 flex items-center gap-2 text-sm font-bold text-blue-600 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+              <div className="mt-8 flex items-center gap-2 text-sm font-bold text-indigo-400 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
                 Learn more <span>→</span>
               </div>
             </div>

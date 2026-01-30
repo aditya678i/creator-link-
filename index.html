@@ -19,45 +19,41 @@
         scroll-behavior: smooth;
         -webkit-font-smoothing: antialiased;
         overflow-x: hidden;
+        background-color: #0d0b1a; /* Dark purplish base */
+        color: #e2e8f0;
       }
       
-      /* Global high-performance transitions for all interactive elements */
+      /* Global high-performance transitions */
       button, a, input, select, textarea, .card-hover {
         transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
       }
 
       .gradient-text {
-        background: linear-gradient(135deg, #2563eb 0%, #10b981 100%);
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
       
       .gradient-bg {
-        background: linear-gradient(135deg, #2563eb 0%, #10b981 100%);
+        background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
       }
 
-      /* Custom selection color for brand identity */
       ::selection {
-        background: #2563eb;
+        background: #6366f1;
         color: white;
       }
 
-      /* Refined Minimalist Scrollbar */
       ::-webkit-scrollbar {
         width: 6px;
       }
       ::-webkit-scrollbar-track {
-        background: #f8fafc;
+        background: #0d0b1a;
       }
       ::-webkit-scrollbar-thumb {
-        background: #e2e8f0;
+        background: #2d2a4d;
         border-radius: 10px;
       }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #cbd5e1;
-      }
 
-      /* Animation definitions for smoother interaction */
       @keyframes fadeInUp {
         from { opacity: 0; transform: translateY(30px); }
         to { opacity: 1; transform: translateY(0); }
@@ -73,11 +69,6 @@
         to { opacity: 1; transform: scale(1); }
       }
 
-      @keyframes slideInLeft {
-        from { opacity: 0; transform: translateX(-30px); }
-        to { opacity: 1; transform: translateX(0); }
-      }
-
       .animate-fade-in-up {
         animation: fadeInUp 0.9s cubic-bezier(0.23, 1, 0.32, 1) forwards;
       }
@@ -88,32 +79,6 @@
 
       .animate-scale-in {
         animation: scaleIn 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-      }
-
-      .animate-slide-left {
-        animation: slideInLeft 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-      }
-
-      /* Staggered delay classes */
-      .stagger-1 { animation-delay: 0.15s; opacity: 0; }
-      .stagger-2 { animation-delay: 0.3s; opacity: 0; }
-      .stagger-3 { animation-delay: 0.45s; opacity: 0; }
-      .stagger-4 { animation-delay: 0.6s; opacity: 0; }
-
-      /* Liquid Hover Effects */
-      .hover-lift:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.15);
-      }
-
-      .float-animation {
-        animation: float 6s ease-in-out infinite;
-      }
-
-      @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-15px); }
-        100% { transform: translateY(0px); }
       }
     </style>
   <script type="importmap">
@@ -128,9 +93,8 @@
 }
 </script>
 </head>
-  <body class="bg-white text-slate-900">
+  <body class="bg-[#0d0b1a] text-slate-200">
     <div id="root"></div>
-    <!-- Application Bootloader -->
     <script type="module" src="./index.tsx"></script>
   </body>
 </html>

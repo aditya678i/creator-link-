@@ -10,19 +10,11 @@ export const SmartAssistant: React.FC = () => {
 
   const brainstormCampaign = async () => {
     if (!brandInfo.trim()) return;
-    
-    // Check for API key before attempting connection
-    const apiKey = process.env.API_KEY;
-    if (!apiKey) {
-      setSuggestion("API Key not found. Please set your API_KEY environment variable in your hosting provider settings (Vercel/Netlify).");
-      return;
-    }
-
     setLoading(true);
     setSuggestion(null);
 
     try {
-      const ai = new GoogleGenAI({ apiKey });
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       const response = await ai.models.generateContent({
         model: 'gemini-3-pro-preview',
         contents: `Act as a senior influencer marketing strategist at CreatorLink. 
@@ -34,31 +26,29 @@ export const SmartAssistant: React.FC = () => {
         4. Target KPI.
         Format it with clear headings and bullet points.`,
       });
-
       setSuggestion(response.text || 'No suggestion generated.');
     } catch (error) {
       console.error("AI Assistant Error:", error);
-      setSuggestion("Unable to generate strategy at this moment. Please check your API key configuration.");
+      setSuggestion("Unable to generate strategy at this moment. Please try again later.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-[#0a0814]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="group bg-slate-950 rounded-[48px] p-8 md:p-14 border border-slate-800 shadow-[0_0_50px_rgba(37,99,235,0.1)] overflow-hidden relative transition-all duration-700 hover:shadow-[0_0_80px_rgba(37,99,235,0.2)]">
-          {/* Animated Background Element */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 blur-[120px] -translate-y-1/2 translate-x-1/2 rounded-full group-hover:bg-blue-600/20 transition-all duration-1000"></div>
+        <div className="group bg-[#0d0b1a] rounded-[48px] p-8 md:p-14 border border-white/5 shadow-2xl overflow-hidden relative transition-all duration-700 hover:shadow-[0_0_80px_rgba(99,102,241,0.1)]">
+          <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-600/10 blur-[120px] -translate-y-1/2 translate-x-1/2 rounded-full group-hover:bg-indigo-600/20 transition-all duration-1000"></div>
           
           <div className="relative z-10">
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/30 group-hover:rotate-12 transition-all duration-500">
+              <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-lg shadow-indigo-600/30 group-hover:rotate-12 transition-all duration-500">
                 <Sparkles className="w-8 h-8 text-white" />
               </div>
               <div>
                 <h3 className="text-3xl font-black text-white mb-1">Campaign AI</h3>
-                <span className="text-blue-500 font-bold text-xs uppercase tracking-widest">Powered by CreatorLink Intelligence</span>
+                <span className="text-indigo-400 font-bold text-xs uppercase tracking-widest">Powered by CreatorLink Intelligence</span>
               </div>
             </div>
             
@@ -72,12 +62,12 @@ export const SmartAssistant: React.FC = () => {
                 value={brandInfo}
                 onChange={(e) => setBrandInfo(e.target.value)}
                 placeholder="e.g. Eco-friendly coffee pods"
-                className="flex-grow px-8 py-5 bg-slate-900 border-2 border-slate-800 rounded-3xl text-white outline-none focus:border-blue-600 focus:ring-4 focus:ring-blue-600/10 transition-all font-semibold placeholder:text-slate-600 text-lg"
+                className="flex-grow px-8 py-5 bg-[#16132b] border-2 border-white/5 rounded-3xl text-white outline-none focus:border-indigo-600 transition-all font-semibold placeholder:text-slate-600 text-lg"
               />
               <button
                 onClick={brainstormCampaign}
                 disabled={loading || !brandInfo.trim()}
-                className="px-10 py-5 gradient-bg text-white rounded-3xl font-black flex items-center justify-center gap-3 disabled:opacity-50 hover:scale-[1.03] active:scale-95 transition-all shadow-xl shadow-blue-600/20 whitespace-nowrap text-lg"
+                className="px-10 py-5 gradient-bg text-white rounded-3xl font-black flex items-center justify-center gap-3 disabled:opacity-50 hover:scale-[1.03] active:scale-95 transition-all shadow-xl shadow-indigo-600/20 whitespace-nowrap text-lg"
               >
                 {loading ? <Loader2 className="w-6 h-6 animate-spin" /> : <Send className="w-6 h-6" />}
                 Draft Strategy
@@ -92,15 +82,10 @@ export const SmartAssistant: React.FC = () => {
               </div>
             )}
             
-            <div className="mt-10 pt-10 border-t border-slate-900 flex flex-wrap gap-6 items-center justify-between text-[10px] font-black text-slate-600 uppercase tracking-[0.2em]">
+            <div className="mt-10 pt-10 border-t border-white/5 flex flex-wrap gap-6 items-center justify-between text-[10px] font-black text-slate-600 uppercase tracking-[0.2em]">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
                 Strategy Engine Online
-              </div>
-              <div className="flex items-center gap-4">
-                <span>Free for Partners</span>
-                <span className="w-1 h-1 bg-slate-800 rounded-full"></span>
-                <span>Unlimited Prompts</span>
               </div>
             </div>
           </div>
